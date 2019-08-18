@@ -6,7 +6,10 @@
   "bytesize": 8,
   "parity": "N",
   "baudrate": 9600,
-  "serviceURL":""
+  "serviceURL":"",
+  "Data_interval":"60"
+
+
 },
   "Temperature_Temperature":
   {

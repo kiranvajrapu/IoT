@@ -1,2 +1,3 @@
 simplejson==3.16.0
 requests==2.22.0
+pycompilation==0.4.6

@@ -1,0 +1,5 @@
+2019-08-18 09:25:34,270 Harmless debug Message
+2019-08-18 09:25:34,270 {'configuration': {'stop_bit': 1, 'method': 'rtu', 'port': '/dev/ttyUSB0', 'bytesize': 8, 'parity': 'N', 'baudrate': 9600, 'serviceURL': '', 'Data_interval': '60'}, 'Temperature_Temperature': {'Gatewayname': 'Madhapur', 'DeviceType': 'Analog', 'RegisterType': 'holding', 'Register_address': '0x00', 'Slave_id': '0xff', 'Multiplier': '0.001', 'Threshold': '23.52'}, 'PIR': {'Gatewayname': 'Madhapur', 'DeviceType': 'Digital', 'PIN': 4, 'Mode': 'Pull_down'}}
+2019-08-18 09:25:34,270 Its a Warning
+2019-08-18 09:25:34,270 Did you try to divide by zero
+2019-08-18 09:25:34,270 Internet is down

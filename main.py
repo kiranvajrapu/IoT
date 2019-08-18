@@ -5,18 +5,24 @@ import calendar;
 import time;
 import threading 
 from threading import Thread
+import logging
 
+logging.basicConfig(filename=time.strftime("logs/M2M-%Y-%m-%d.log"),format='%(asctime)s %(message)s')
+# Creating an object
+logger = logging.getLogger()
+
+# Setting the threshold of logger to DEBUG
+logger.setLevel(logging.DEBUG)
 data={}
 # the result is a Python dictionary:
 server_data = []
-f= open("logs.txt","w+")
 
 with open('configuration.json') as f:
   data = json.load(f)
 
 
 def collect_data():
-    threading.Timer(1.0, collect_data).start()
+    threading.Timer(10, collect_data).start()
     for (k, v) in data.items():
         if(k!="configuration"):
             if(v.get("DeviceType")=="Analog"):
@@ -27,10 +33,10 @@ def collect_data():
                 else:
                     device_data['Gatewayname']=v.get("Gatewayname")
                     device_data['parameter']=k
-                    device_data['timestamp']=str(calendar.timegm(time.gmtime()))
+                    device_data['timestamp']=calendar.timegm(time.gmtime())
                     device_data['value']=value
                     server_data.append(device_data)
-                    #f.write(device_data)
+                    logging.info(device_data)
 
         if (v.get("DeviceType") == "Digital"):
                 device_data = {}
@@ -40,22 +46,22 @@ def collect_data():
                 else:
                     device_data['Gatewayname'] = v.get("Gatewayname")
                     device_data['parameter'] = k
-                    device_data['timestamp'] = str(calendar.timegm(time.gmtime()))
+                    device_data['timestamp'] = calendar.timegm(time.gmtime())
                     device_data['value'] = value
                     server_data.append(device_data)
-                    #f.write(device_data)                    
-    print(server_data)
-    print(len(server_data))
+                    logging.info(device_data)
+    #print(server_data)
+    #print(len(server_data))
 
 def push_data():
-    threading.Timer(30, push_data).start()
-    print("-----------------------------------------------")
-    print("pushing to server")
-    print(server_data)
-    print(len(server_data))
-    f.write(convert(server_data)) 
+    threading.Timer(int(data["configuration"]["Data_interval"]), push_data).start()
+    logging.info("-----------------------------------------------")
+    logging.info("pushing to server")
+    logging.info(server_data)
+    #print(server_data)
+    #print(len(server_data))
     reset_list()
-    print(len(server_data))
+    #print(len(server_data))
 
     
 

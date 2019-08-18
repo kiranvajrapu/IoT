@@ -5,11 +5,7 @@ from pymodbus.client.sync import ModbusSerialClient as ModbusClient  # initializ
 from pymodbus.transaction import ModbusRtuFramer
 #import RPi.GPIO as GPIO
 # Read data from rs485 using pymodbus python using Rs485-USB converter
-import logging
 
-logging.basicConfig()
-log = logging.getLogger()
-log.setLevel(logging.DEBUG)
 
 # count= the number of registers to read
 # unit= the slave unit this request is targeting
@@ -48,5 +44,4 @@ def write_data_rs485(configuration, device):
     client.write_register(0x00,"1")
     #Closes the underlying socket connection
     client.close()
-    print(configuration)
-    print(device)
+
